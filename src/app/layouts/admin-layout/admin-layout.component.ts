@@ -5,7 +5,6 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-layout',
@@ -37,14 +36,16 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     });
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationStart) {
-        if (event.url != this.lastPoppedUrl)
+        if (event.url !== this.lastPoppedUrl) {
           this.yScrollStack.push(window.scrollY);
+        }
       } else if (event instanceof NavigationEnd) {
-        if (event.url == this.lastPoppedUrl) {
+        if (event.url === this.lastPoppedUrl) {
           this.lastPoppedUrl = undefined;
           window.scrollTo(0, this.yScrollStack.pop());
-        } else
+        } else {
           window.scrollTo(0, 0);
+        }
       }
     });
     this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
