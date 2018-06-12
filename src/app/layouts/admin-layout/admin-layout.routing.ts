@@ -13,7 +13,14 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'table-list', component: TableListComponent },
-  { path: 'book-list', component: BookListComponent },
+  {
+    path: 'book-list',
+    loadChildren: 'app/book-list/book.module#BookModule'
+  },
+  {
+    path: 'article',
+    loadChildren: 'app/article/article.module#ArticleModule'
+  },
   { path: 'typography', component: TypographyComponent },
   { path: 'icons', component: IconsComponent },
   { path: 'maps', component: MapsComponent },

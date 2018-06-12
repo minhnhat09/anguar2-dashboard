@@ -28,7 +28,6 @@ import { ToastrModule } from 'ngx-toastr';
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
-    BookListComponent,
     TypographyComponent,
     IconsComponent,
     MapsComponent,
