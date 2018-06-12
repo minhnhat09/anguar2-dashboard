@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./article-detail.component.css']
 })
 export class ArticleDetailComponent {
-
+  public textData = '';
   constructor() { }
 
 }
