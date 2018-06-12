@@ -26,6 +26,7 @@ import { ArticleEditComponent } from './article-edit.component';
   declarations: [
     ArticleListComponent,
     ArticleDetailComponent,
+    ArticleEditComponent,
   ],
   providers: []
 })

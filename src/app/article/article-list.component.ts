@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { ArticleService } from './article.service';
+
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
@@ -8,16 +9,15 @@ import { HeroService } from '../hero.service';
 })
 export class ArticleListComponent implements OnInit {
   heroes: Hero[];
-  constructor(private heroService: HeroService) { }
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
-    this.getHeroes();
-    console.log(this.heroes);
+    this.getArticles();
   }
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => {
-        console.log(heroes);
+  getArticles(): void {
+    this.articleService.getArticles()
+      .subscribe(articles => {
+        console.log('articles', articles);
       });
   }
 }
