@@ -2,22 +2,26 @@
 </div>
 <div class="main-content">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title"> Article detail</h4>
         </div>
         <div class="card-body">
-          <textarea class="form-control" rows="50"  id="textbox" [(ngModel)]="textData"></textarea>
+          <textarea class="form-control" rows="20"  id="textbox" [(ngModel)]="textData"></textarea>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    
+  </div>
+  <div class="row">
+    
+    <div class="col-md-12">
       <div class="card">
         <div class="card-body" style="overflow-y:auto; height: 100vh">
           <ngx-md [data]="textData"></ngx-md>
         </div>
       </div>
-    </div>
+    </div> 
   </div>
 </div>
