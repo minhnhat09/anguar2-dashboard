@@ -7,6 +7,7 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
+  
   heroes: Hero[];
   constructor(private heroService: HeroService) { }
 
