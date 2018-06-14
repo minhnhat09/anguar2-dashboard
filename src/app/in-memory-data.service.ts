@@ -15,6 +15,8 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 20, name: 'Tornado' }
     ];
     // Mục tiêu: đọc sách nhanh và hiệu quả, đảm bảo tracer tiến trình đọc sách theo thời gian (năm này qua năm khác)
+    // Mục này có thể mở rộng thêm: làm app audio book bằng reactnative/swift, tải hình lên s3, push noti nhắc nhở lịch đọc sách,
+    // badge để thưởng
     const books = [
       {
         id: 1,
@@ -103,6 +105,13 @@ export class InMemoryDataService implements InMemoryDbService {
     const plannings = {
 
     }
+    const sideProjects = [
+      {
+        id: 1,
+        projectName: 'lifemanager',
+        roadMap: ''
+      }
+    ]
     return { heroes, books };
   }
 }
