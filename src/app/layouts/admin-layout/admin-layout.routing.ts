@@ -20,6 +20,10 @@ export const AdminLayoutRoutes: Routes = [
     path: 'article',
     loadChildren: 'app/article/article.module#ArticleModule'
   },
+  {
+    path: 'side-project',
+    loadChildren: 'app/side-project/side-project.module#SideProjectModule'
+  },
   { path: 'typography', component: TypographyComponent },
   { path: 'icons', component: IconsComponent },
   { path: 'maps', component: MapsComponent },

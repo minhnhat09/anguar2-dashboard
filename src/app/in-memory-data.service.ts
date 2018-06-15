@@ -151,7 +151,16 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 1,
         projectName: 'lifemanager',
-        roadMap: ''
+        roadMap: '',
+        progress: [
+          {
+            id: 1,
+            content: '',
+            dateCreate: '',
+            dateUpdate: '',
+            tags: []
+          }
+        ]
       }
     ]
     return { heroes, books };
