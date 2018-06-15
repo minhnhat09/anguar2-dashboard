@@ -5,30 +5,26 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title"> Simple Table</h4>
+          <h4 class="card-title">Reading</h4>
         </div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table">
-              <thead class=" text-primary">
-                <th>Name</th>
-                <th>Country</th>
-                <th>City</th>
-                <th class="text-right">
-                  Salary
-                </th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Dakota Rice</td>
-                  <td>Niger</td>
-                  <td>Oud-Turnhout</td>
-                  <td class="text-right">
-                    $36,738
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="row">
+
+            <div *ngFor="let book of books" class="col-3">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Book Title</h4>
+                </div>
+                <img class="card-img-top" src="http://lorempixel.com/300/400" alt="Card image cap">
+                <div class="card-body">
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                  </div>
+                  <button type="button" class="btn btn-primary" [routerLink]="['/book-list', 'book-edit']">Create book</button>
+                </div>
+              </div>
+            </div>
+
           </div>
           <button type="button" class="btn btn-primary" [routerLink]="['/book-list', 'book-edit']">Create book</button>
         </div>
