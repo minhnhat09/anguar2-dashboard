@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
         component: BookListComponent
       },
       {
-        path: 'book-detail',
+        path: ':id',
         component: BookDetailComponent
 
       },

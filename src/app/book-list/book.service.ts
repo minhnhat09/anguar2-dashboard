@@ -13,7 +13,7 @@ const httpOptions = {
 export class BookService {
 
   private booksUrl = 'api/books';  // URL to web api
-
+  public books: Book[] = [];
   constructor(
     private http: HttpClient) { }
 
@@ -22,10 +22,22 @@ export class BookService {
     return this.http.get<Book[]>(this.booksUrl)
       .pipe(
         map(res => {
+          this.books = res;
           return res;
         })
       );
   }
+
+  /**
+   * TODO: fix after desgin
+   * Methode temporary
+   * @param bookId
+   */
+  getBookById(bookId: number) {
+    return this.books.find((b: Book) => b.id === bookId);
+  }
+
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
