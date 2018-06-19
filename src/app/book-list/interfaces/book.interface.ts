@@ -4,7 +4,7 @@ export interface Book {
   author: string;
   page: number;
   category: string;
-  tags: string[];
+  tags: Tag[];
   bookImageUrl: string;
   comment: string
   status: string
