@@ -45,18 +45,53 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6 pr-1">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label>Source</label>
-                  <input type="text" class="form-control" placeholder="Biographie">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" checked>
+                          <span class="form-check-sign"></span>
+                          <span>Ebook</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" checked>
+                          <span class="form-check-sign"></span>
+                          <span>Paper</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" checked>
+                          <span class="form-check-sign"></span>
+                          <span>Audio</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6 pr-1">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label>Tags</label>
-                  <input type="text" class="form-control" placeholder="Business/Startup">
+                  <input type="text" class="form-control" placeholder="Business/Startup" (keydown)="onTagKeydown($event)">
+                </div>
+                <div class="row">
+                  <div class="col-md-1" *ngFor="let tag of tags">
+                    <h5>
+                      <span class="badge badge-pill badge-success">{{tag}}</span>
+                    </h5>
+                  </div>
                 </div>
               </div>
             </div>

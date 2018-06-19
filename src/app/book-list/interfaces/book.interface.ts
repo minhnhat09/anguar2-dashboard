@@ -18,3 +18,8 @@ export interface Book {
     paper: boolean;
   }
 }
+
+interface Tag {
+  name: string
+  className: string
+}

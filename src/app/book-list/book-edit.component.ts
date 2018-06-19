@@ -11,7 +11,14 @@ import { BookService } from './book.service';
 export class BookEditComponent implements OnInit {
   public bookForm: FormGroup;
   public book: Book;
-  // @ViewChild(NgForm) bookForm: NgForm;
+  public tags: string[] = [];
+  public classNames: string[] = [
+    'primary',
+    'success',
+    'info',
+    'warning',
+    'danger'
+  ]
   constructor(private bookService: BookService) {
     this.book = bookService.initiateBook();
   }
@@ -27,5 +34,11 @@ export class BookEditComponent implements OnInit {
   public createOrUpdateBook() {
     console.log(this.bookForm);
   }
-
+  onTagKeydown(event) {
+    if (event.key === 'Enter' && event.target.value) {
+      const tag = event.target.value;
+      this.tags.push(tag);
+      event.target.value = '';
+    }
+  }
 }
