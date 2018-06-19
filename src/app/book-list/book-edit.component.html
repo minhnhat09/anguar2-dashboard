@@ -52,7 +52,7 @@
                     <div class="col-md-4">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" checked>
+                          <input formControlName="ebook" class="form-check-input" type="checkbox" checked>
                           <span class="form-check-sign"></span>
                           <span>Ebook</span>
                         </label>
@@ -61,7 +61,7 @@
                     <div class="col-md-4">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" checked>
+                          <input formControlName="paper" class="form-check-input" type="checkbox" checked>
                           <span class="form-check-sign"></span>
                           <span>Paper</span>
                         </label>
@@ -70,7 +70,7 @@
                     <div class="col-md-4">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" checked>
+                          <input formControlName="audio" class="form-check-input" type="checkbox" checked>
                           <span class="form-check-sign"></span>
                           <span>Audio</span>
                         </label>
@@ -97,7 +97,7 @@
             </div>
           </div>
         </form>
-        <button type="button" class="btn btn-primary" (click)="createOrUpdateBook()">Create book</button>
+        <button type="button" class="btn btn-primary" (click)="createOrUpdateBook()" [disabled]="bookForm.invalid">Create book</button>
       </div>
     </div>
   </div>

@@ -27,7 +27,11 @@ export class BookEditComponent implements OnInit {
       bookName: new FormControl('', Validators.required),
       author: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required),
-      bookImageUrl: new FormControl('', Validators.required)
+      bookImageUrl: new FormControl('', Validators.required),
+      ebook: new FormControl(false, Validators.required),
+      audio: new FormControl(false, Validators.required),
+      paper: new FormControl(false, Validators.required)
+      // TODO: them condition cho tag
     });
   }
   public removeTag(i) {
@@ -35,6 +39,11 @@ export class BookEditComponent implements OnInit {
   }
   public createOrUpdateBook() {
     console.log(this.bookForm);
+    const book = {
+      ...this.bookForm.value,
+      tags: this.tags
+    };
+    console.log(book);
   }
 
   onTagKeydown(event) {
