@@ -8,28 +8,31 @@
           <h4 class="card-title">Reading</h4>
         </div>
         <div class="card-body">
-          <div class="row">
-            <div *ngFor="let book of books" class="col-3">
-              <a [routerLink]="['/book-list', book.id]">
-                <div class="card card-book">
-                  <div class="card-header">
-                    <h4 class="card-title">{{book.bookName}}</h4>
-                  </div>
-                  <img class="card-img-top" [src]="book.bookImageUrl" alt="Card image cap">
-                  <div class="card-body">
-                    <h6 class="card-title">Author: {{book.author}}</h6>
-                    <h6 class="card-title">Tags:</h6>
-                    <div>
-                      <span class="badge badge-pill badge-primary">Primary</span>
-                      <span class="badge badge-pill badge-secondary">Secondary</span>
-                    </div>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                  </div>
-                </div>
-              </a>
-            </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>Name</th>
+                <th>Category</th>
+                <th>Tags</th>
+                <th>
+                  Status
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let book of books">
+                  <td>{{book.bookName}}</td>
+                  <td>{{book.category}}</td>
+                  <td>
+                    <span *ngFor="let tag of book.tags">
+                      {{tag}}
+                    </span>
+                  </td>
+                  <td>
+                    {{book.status}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <button type="button" class="btn btn-primary" [routerLink]="['/book-list', 'book-edit']">Create book</button>
         </div>

@@ -8,7 +8,13 @@ export interface Book {
   bookImageUrl: string;
   comment: string
   status: string
-  progress: number;
+  progress: string;
   dateCreate: string;
-  dateUpdate: string
+  dateUpdate: string;
+  readTime: string;
+  source: {
+    audio: boolean;
+    ebook: boolean;
+    paper: boolean;
+  }
 }

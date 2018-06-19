@@ -28,6 +28,30 @@ export class BookService {
       );
   }
 
+  initiateBook(): Book {
+    const book: Book = {
+      id: 0,
+      bookName: '',
+      author: '',
+      page: 45,
+      category: '',
+      tags: [],
+      bookImageUrl: '',
+      comment: '',
+      status: '',
+      progress: '',
+      dateCreate: '',
+      dateUpdate: '',
+      readTime: '',
+      source: {
+        audio: false,
+        ebook: false,
+        paper: false
+      }
+    }
+    return book;
+  }
+
   /**
    * TODO: fix after desgin
    * Methode temporary
