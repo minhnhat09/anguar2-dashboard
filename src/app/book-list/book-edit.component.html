@@ -87,9 +87,9 @@
                   <input type="text" class="form-control" placeholder="Business/Startup" (keydown)="onTagKeydown($event)">
                 </div>
                 <div class="row">
-                  <div class="col-md-1" *ngFor="let tag of tags">
+                  <div class="ml-1"*ngFor="let tag of tags;index as i">
                     <h5>
-                      <span class="badge badge-pill badge-success">{{tag}}</span>
+                      <span class="badge badge-pill" [ngClass]="tag.className" (click)="removeTag(i)">{{tag.name}}</span>
                     </h5>
                   </div>
                 </div>

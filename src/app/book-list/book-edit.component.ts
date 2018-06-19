@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { Book } from './interfaces/book.interface';
+import { Book, Tag } from './interfaces/book.interface';
 // SERVICES
 import { BookService } from './book.service';
 @Component({
@@ -11,14 +11,14 @@ import { BookService } from './book.service';
 export class BookEditComponent implements OnInit {
   public bookForm: FormGroup;
   public book: Book;
-  public tags: string[] = [];
+  public tags: Tag[] = [];
   public classNames: string[] = [
-    'primary',
-    'success',
-    'info',
-    'warning',
-    'danger'
-  ]
+    'badge-primary',
+    'badge-success',
+    'badge-info',
+    'badge-warning',
+    'badge-danger'
+  ];
   constructor(private bookService: BookService) {
     this.book = bookService.initiateBook();
   }
@@ -30,13 +30,19 @@ export class BookEditComponent implements OnInit {
       bookImageUrl: new FormControl('', Validators.required)
     });
   }
-
+  public removeTag(i) {
+    this.tags.splice(i, 1);
+  }
   public createOrUpdateBook() {
     console.log(this.bookForm);
   }
+
   onTagKeydown(event) {
     if (event.key === 'Enter' && event.target.value) {
-      const tag = event.target.value;
+      const tag: Tag = {
+        name: event.target.value,
+        className: this.classNames[Math.floor((Math.random() * 5))]
+      }
       this.tags.push(tag);
       event.target.value = '';
     }

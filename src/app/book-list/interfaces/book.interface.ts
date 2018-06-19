@@ -19,7 +19,7 @@ export interface Book {
   }
 }
 
-interface Tag {
+export interface Tag {
   name: string
   className: string
 }
