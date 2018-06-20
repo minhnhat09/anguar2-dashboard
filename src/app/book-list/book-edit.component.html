@@ -14,13 +14,13 @@
             </span>
             <div class="row">
               <div class="col-md-6 pr-1">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-danger':bookForm.controls.bookName.invalid, 'has-success':bookForm.controls.bookName.valid}">
                   <label>Book Name</label>
                   <input type="text" class="form-control" placeholder="Lean startup" formControlName="bookName">
                 </div>
               </div>
               <div class="col-md-6 pl-1">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-danger':bookForm.controls.author.invalid}">
                   <label>Author</label>
                   <input type="text" class="form-control" placeholder="Eric Ries" formControlName="author">
                 </div>
@@ -28,7 +28,7 @@
             </div>
             <div class="row">
               <div class="col-md-6 pr-1">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-danger':bookForm.controls.category.invalid, 'has-success':bookForm.controls.category.valid}">
                   <label for="Category">Category</label>
                   <select class="form-control" id="Category" formControlName="category">
                     <option value="Lengendary">Lengendary</option>
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="col-md-6 pr-1">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'has-danger':bookForm.controls.bookImageUrl.invalid, 'has-success':bookForm.controls.bookImageUrl.valid}">
                   <label>Book Url</label>
                   <input type="text" class="form-control" placeholder="url" formControlName="bookImageUrl">
                 </div>
@@ -87,7 +87,7 @@
                   <input type="text" class="form-control" placeholder="Business/Startup" (keydown)="onTagKeydown($event)">
                 </div>
                 <div class="row">
-                  <div class="ml-1"*ngFor="let tag of tags;index as i">
+                  <div class="ml-1" *ngFor="let tag of tags;index as i">
                     <h5>
                       <span class="badge badge-pill" [ngClass]="tag.className" (click)="removeTag(i)">{{tag.name}}</span>
                     </h5>
