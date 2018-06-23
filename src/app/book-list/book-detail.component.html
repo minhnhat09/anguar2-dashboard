@@ -8,7 +8,46 @@
           <h4 class="card-title"> Book detail</h4>
         </div>
         <div class="card-body">
-          {{book.bookName}}
+          <div class="row">
+            <div class="col-md-2">
+              <!-- <img *ngIf="book" [src]="bookUrl" [style.width.px]="imageWidth"> -->
+              <img *ngIf="book" src="./assets/img/mike.jpg" [style.width.px]="imageWidth">
+
+            </div>
+            <div class="col-md-8">
+              <div class="typography-line">
+                <h6>
+                  <span>Book Name</span>
+                  {{book.bookName}}
+                </h6>
+              </div>
+              <div class="typography-line">
+                <h6>
+                  <span>Author</span>
+                  {{book.author}}
+                </h6>
+              </div>
+              <div class="typography-line">
+                <h6>
+                  <span>Category</span>
+                  {{book.category}}
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+                <textarea class="form-control" rows="20" id="textbox" [(ngModel)]="bookComment"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <ngx-md [data]="bookComment">
+                  
+              </ngx-md>
+              <div Markdown>{{bookComment}}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

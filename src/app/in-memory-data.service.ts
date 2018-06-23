@@ -17,64 +17,6 @@ export class InMemoryDataService implements InMemoryDbService {
     // Mục tiêu: đọc sách nhanh và hiệu quả, đảm bảo tracer tiến trình đọc sách theo thời gian (năm này qua năm khác)
     // Mục này có thể mở rộng thêm: làm app audio book bằng reactnative/swift, tải hình lên s3, push noti nhắc nhở lịch đọc sách,
     // badge để thưởng
-    /* const books = [
-      {
-        id: 1,
-        bookName: 'aaaa',
-        author: 'bbbb',
-        page: 45,
-        category: 'business',
-        tags: ['motivation', 'startup'],
-        bookImageUrl: 'dd',
-        comment: '',
-        status: 'pending',
-        progress: '',
-        dateCreate: '',
-        dateUpdate: ''
-      },
-      {
-        id: 1,
-        bookName: 'aaaa',
-        author: 'bbbb',
-        page: 45,
-        category: 'business',
-        tags: ['motivation', 'startup'],
-        bookImageUrl: 'dd',
-        comment: '',
-        status: 'pending',
-        progress: '',
-        dateCreate: '',
-        dateUpdate: ''
-      },
-      {
-        id: 1,
-        bookName: 'aaaa',
-        author: 'bbbb',
-        page: 45,
-        category: 'business',
-        tags: ['motivation', 'startup'],
-        bookImageUrl: 'dd',
-        comment: '',
-        status: 'pending',
-        progress: '',
-        dateCreate: '',
-        dateUpdate: ''
-      },
-      {
-        id: 1,
-        bookName: 'aaaa',
-        author: 'bbbb',
-        page: 45,
-        category: 'business',
-        tags: ['motivation', 'startup'],
-        bookImageUrl: 'dd',
-        comment: '',
-        status: 'pending',
-        progress: '',
-        dateCreate: '',
-        dateUpdate: ''
-      },
-    ]; */
     const articles = [
       // category: blog(bài viết dài), quickThought(suy nghĩ linh tinh), ý tuởng(có thể mở rộng)
       {

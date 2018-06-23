@@ -28,9 +28,10 @@ export class BookEditComponent implements OnInit {
       author: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required),
       bookImageUrl: new FormControl('', Validators.required),
-      ebook: new FormControl(false, Validators.required),
-      audio: new FormControl(false, Validators.required),
-      paper: new FormControl(false, Validators.required)
+      ebook: new FormControl(false),
+      audio: new FormControl(false),
+      paper: new FormControl(false),
+      comment: new FormControl('')
       // TODO: them condition cho tag
     });
   }

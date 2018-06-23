@@ -17,6 +17,7 @@
                 <th>
                   Status
                 </th>
+                <th></th>
               </thead>
               <tbody>
                 <tr *ngFor="let book of books">
@@ -29,6 +30,9 @@
                   </td>
                   <td>
                     {{book.status}}
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary" [routerLink]="['/book-list', 'book-detail', book.id]">Detail book</button>
                   </td>
                 </tr>
               </tbody>

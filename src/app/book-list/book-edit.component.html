@@ -87,7 +87,7 @@
                   <input type="text" class="form-control" placeholder="Business/Startup" (keydown)="onTagKeydown($event)">
                 </div>
                 <div class="row">
-                  <div class="ml-1"*ngFor="let tag of tags;index as i">
+                  <div class="ml-1" *ngFor="let tag of tags;index as i">
                     <h5>
                       <span class="badge badge-pill" [ngClass]="tag.className" (click)="removeTag(i)">{{tag.name}}</span>
                     </h5>
@@ -95,9 +95,23 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Comment</h4>
+                  </div>
+                  <div class="card-body">
+                    <textarea class="form-control" formControlName="comment" rows="20" id="textbox"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
-        <button type="button" class="btn btn-primary" (click)="createOrUpdateBook()" [disabled]="bookForm.invalid">Create book</button>
+        <div class="pl-3">
+          <button type="button" class="btn btn-primary" (click)="createOrUpdateBook()" [disabled]="bookForm.invalid">Create book</button>
+        </div>
       </div>
     </div>
   </div>
