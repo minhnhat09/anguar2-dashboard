@@ -78,7 +78,13 @@ export class InMemoryDataService implements InMemoryDbService {
     ]
 
     // quote hay, motivé
-    const quotes = []
+    const quotes = [
+      {
+        id: 1,
+        content: 'Lorem ipsum dolor sit amet consectetur',
+        author: 'gd'
+      }
+    ]
     /**
      * Mục tiêu dài hạn: thoát khỏi rat race
      * Bucket list năm
@@ -105,6 +111,6 @@ export class InMemoryDataService implements InMemoryDbService {
         ]
       }
     ]
-    return { heroes, books };
+    return { heroes, books, quotes };
   }
 }

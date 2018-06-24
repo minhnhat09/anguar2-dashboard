@@ -17,6 +17,10 @@ export const AdminLayoutRoutes: Routes = [
     loadChildren: 'app/book-list/book.module#BookModule'
   },
   {
+    path: 'quote-list',
+    loadChildren: 'app/motivation/quote/quote.module#QuoteModule'
+  },
+  {
     path: 'article',
     loadChildren: 'app/article/article.module#ArticleModule'
   },
