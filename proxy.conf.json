@@ -1,11 +1,11 @@
 {
     "/auth/google": {
-        "target": "http://localhost:5000",
+        "target": "http://localhost:3090",
         "secure": false,
         "logLevel": "debug"
     },
     "/api/*": {
-        "target": "http://localhost:5000",
+        "target": "http://localhost:3090",
         "secure": false,
         "logLevel": "debug"
     }
