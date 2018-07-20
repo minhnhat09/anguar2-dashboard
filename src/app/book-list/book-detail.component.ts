@@ -21,15 +21,11 @@ export class BookDetailComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-    console.log('ngoninit');
     const bookId = this.route.snapshot.params.id;
-    console.log('bookid', bookId);
     this.book = this.bookService.getBookById(bookId);
-    // this.bookComment = this.book.comment;
-    this.bookComment = '## des <br>';
-    this.bookComment += '# crip';
+    console.log(this.book)
   }
   ngAfterContentInit() {
-    
+    //
   }
 }

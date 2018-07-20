@@ -14,18 +14,18 @@ const httpOptions = {
 export class BookService {
 
   private booksUrl = 'api/books';  // URL to web api
+  private headers = new Headers({
+    'Content-Type': 'application/json',
+    // tslint:disable-next-line:max-line-length
+    'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YjM3NGU5ZjNiMTZlODRmYTQ1YmQ5MjUiLCJpYXQiOjE1MzIxMTI4MTQxNTh9.XxGSHtJWnbsz-aFFjiJDkF5e1J7nr_w_AFUKLZbLiLI'
+  });
   public books: Book[] = [];
   constructor(
     private http: Http) { }
 
   /** GET heroes from the server */
   getBooks(): any {
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      // tslint:disable-next-line:max-line-length
-      'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YjM3NGU5ZjNiMTZlODRmYTQ1YmQ5MjUiLCJpYXQiOjE1MzIxMTI4MTQxNTh9.XxGSHtJWnbsz-aFFjiJDkF5e1J7nr_w_AFUKLZbLiLI'
-    });
-    const options = new RequestOptions({ headers: headers });
+    const options = new RequestOptions({ headers: this.headers });
     // return this.http.get(this.booksUrl, options)
     return this.http.get(this.booksUrl, options)
       .pipe(
@@ -35,8 +35,20 @@ export class BookService {
         }));
   }
 
+  createBook(newBook): any {
+    const options = new RequestOptions({ headers: this.headers });
+    // return this.http.get(this.booksUrl, options)
+    return this.http.post(this.booksUrl, newBook, options)
+      .pipe(
+        map(response => {
+          return response.json();
+        }));
+  }
 
-
+  private extractData(response: Response) {
+    const body = response.json();
+    return body.data || {};
+  }
 
   initiateBook(): Book {
     const book: Book = {

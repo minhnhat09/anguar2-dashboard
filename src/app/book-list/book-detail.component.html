@@ -41,11 +41,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
-              <ngx-md [data]="bookComment">
-                  
-              </ngx-md>
-              <div Markdown>{{bookComment}}</div>
+            <div class="col-md-12" *ngFor="let comment of book.comments">
+              <div Markdown>{{comment}}</div>
             </div>
           </div>
         </div>

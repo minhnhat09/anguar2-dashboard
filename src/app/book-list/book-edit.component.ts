@@ -42,9 +42,11 @@ export class BookEditComponent implements OnInit {
     console.log(this.bookForm);
     const book = {
       ...this.bookForm.value,
+      comments: [this.bookForm.value.comment],
       tags: this.tags
     };
     console.log(book);
+    this.bookService.createBook(book);
   }
 
   onTagKeydown(event) {
