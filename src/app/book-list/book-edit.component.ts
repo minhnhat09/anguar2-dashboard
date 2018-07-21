@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { Book, Tag } from './interfaces/book.interface';
+import { Router } from '@angular/router';
 // SERVICES
 import { BookService } from './book.service';
 @Component({
@@ -19,7 +20,8 @@ export class BookEditComponent implements OnInit {
     'badge-warning',
     'badge-danger'
   ];
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService,
+    private router: Router) {
     this.book = bookService.initiateBook();
   }
   public ngOnInit() {
@@ -45,10 +47,17 @@ export class BookEditComponent implements OnInit {
       comments: [this.bookForm.value.comment],
       tags: this.tags
     };
-    console.log(book);
     this.bookService.createBook(book)
+      .then(response => {
+        const body = response.json();
+        this.router.navigate(['/book-list']);
+      })
+      .catch(this.handleErrorPromise);
   }
-
+  handleErrorPromise(error: Response | any) {
+    console.error(error.message || error);
+    return Promise.reject(error.message || error);
+  }
   onTagKeydown(event) {
     if (event.key === 'Enter' && event.target.value) {
       const tag: Tag = {

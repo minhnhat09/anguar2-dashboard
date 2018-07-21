@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "6.0.2",
+    "@angular/animations": "^6.0.2",
     "@angular/common": "6.0.2",
     "@angular/compiler": "6.0.2",
     "@angular/core": "6.0.2",
@@ -40,7 +40,7 @@
     "ng2-charts": "1.6.0",
     "ngx-md": "^6.0.0",
     "ngx-spinner": "^6.0.0",
-    "ngx-toastr": "^8.5.0",
+    "ngx-toastr": "^8.9.1",
     "nouislider": "10.0.0",
     "perfect-scrollbar": "1.1.0",
     "popper.js": "1.14.3",

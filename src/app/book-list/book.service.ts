@@ -5,7 +5,7 @@ import { RequestOptions, Headers, Http, RequestMethod } from '@angular/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Book } from './interfaces/book.interface';
-
+import { ToastrService } from 'ngx-toastr';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -21,10 +21,12 @@ export class BookService {
   });
   public books: Book[] = [];
   constructor(private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
     private http: Http) { }
 
   /** GET heroes from the server */
   getBooks(): any {
+    this.books = [];
     const options = new RequestOptions({ headers: this.headers });
     // return this.http.get(this.booksUrl, options)
     this.spinner.show();
@@ -39,25 +41,36 @@ export class BookService {
             }
             this.books.push(book);
           })
-          console.log(this.books);
           this.spinner.hide();
           return this.books;
         }));
   }
 
-  createBook(newBook) {
+  deleteBook(bookId: string) {
+    const options = new RequestOptions({
+      headers: this.headers
+    });
+    // return this.http.get(this.booksUrl, options)
+    return this.http.delete(`${this.booksUrl}/deleteBook/${bookId}`, options)
+      .toPromise()
+      .then(response => {
+        if (response.status === 200) {
+          this.toastr.success('Delete book ok', 'Information', {
+            positionClass: 'toast-top-right'
+          });
+          this.books.splice(this.books.findIndex((b: Book) => b.id === bookId), 1)
+        }
+      })
+      .catch(this.handleErrorPromise);
+  }
+  createBook(newBook): Promise<any> {
     const options = new RequestOptions({
       method: RequestMethod.Post,
       headers: this.headers
     });
     // return this.http.get(this.booksUrl, options)
     return this.http.post(this.booksUrl, newBook, options)
-      .toPromise()
-      .then(response => {
-        const body = response.json();
-        return body || {};
-      })
-      .catch(this.handleErrorPromise);
+      .toPromise();
   }
 
   handleErrorPromise(error: Response | any) {

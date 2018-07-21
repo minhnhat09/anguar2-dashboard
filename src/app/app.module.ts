@@ -10,16 +10,20 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppComponent } from './app.component';
-
+// SPINNER
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+// MARKDOWN
 import { NgxMdModule } from 'ngx-md';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
     FormsModule,
     HttpModule,
     HttpClientModule,
