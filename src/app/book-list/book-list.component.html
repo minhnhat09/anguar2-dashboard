@@ -34,8 +34,12 @@
                     {{book.status}}
                   </td>
                   <td>
-                    <button type="button" class="btn btn-primary" [routerLink]="['/book-list', 'book-detail', book._id]">Detail book</button>
-                    <button type="button" class="btn btn-danger" (click)="deleteBook(book.id)">Delete book</button>
+                    <button class="btn btn-success" [routerLink]="['/book-list', 'book-detail', book._id]">
+                      <i class="now-ui-icons objects_spaceship"></i>
+                    </button>
+                    <button class="btn btn-danger" (click)="deleteBook(book.id)">
+                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>
                   </td>
                 </tr>
               </tbody>
