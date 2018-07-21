@@ -17,7 +17,6 @@ export class BookResolver implements Resolve<Book> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Book> {
         const bookId = route.params['id'];
-        console.log(bookId);
         const book = this.bookService.getBookById(bookId);
         return Observable.of(book);
     }

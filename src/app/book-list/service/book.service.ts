@@ -74,6 +74,15 @@ export class BookService {
             .toPromise();
     }
 
+    updateBook(bookId: string, bookForUpdate): Promise<any> {
+        const options = new RequestOptions({
+            headers: this.headers
+        });
+        // return this.http.get(this.booksUrl, options)
+        return this.http.put(`${this.booksUrl}/book-edit/${bookId}`, bookForUpdate, options)
+            .toPromise();
+    }
+
     handleErrorPromise(error: Response | any) {
         console.error(error.message || error);
         return Promise.reject(error.message || error);

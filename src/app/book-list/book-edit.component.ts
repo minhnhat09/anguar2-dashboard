@@ -27,10 +27,7 @@ export class BookEditComponent implements OnInit {
     this.book = bookService.initiateBook();
   }
   public ngOnInit() {
-    console.log(this.route);
-    this.route.data.subscribe(data => {
-      console.log(data);
-    });
+
     this.bookForm = new FormGroup({
       bookName: new FormControl('', Validators.required),
       author: new FormControl('', Validators.required),
@@ -39,25 +36,49 @@ export class BookEditComponent implements OnInit {
       ebook: new FormControl(false),
       audio: new FormControl(false),
       paper: new FormControl(false),
-      comment: new FormControl('')
-      // TODO: them condition cho tag
+      // TODO: them condition cho tag, commment
+    });
+    this.route.data.subscribe(data => {
+      if (data.book) {
+        this.book = data['book'];
+        console.log(this.book);
+        console.log(this.bookForm);
+        this.bookForm.setValue({
+          bookName: this.book.bookName,
+          author: this.book.author,
+          category: this.book.category,
+          bookImageUrl: this.book.bookImageUrl,
+          ebook: this.book.source.ebook,
+          audio: this.book.source.audio,
+          paper: this.book.source.ebook,
+        });
+      }
     });
   }
   public removeTag(i) {
     this.tags.splice(i, 1);
   }
   public createOrUpdateBook() {
-    const book = {
+    this.book = Object.assign(this.book, {
       ...this.bookForm.value,
-      comments: [this.bookForm.value.comment],
-      tags: this.tags
-    };
-    this.bookService.createBook(book)
-      .then(response => {
-        const body = response.json();
-        this.router.navigate(['/book-list']);
-      })
-      .catch(this.handleErrorPromise);
+      comments: [this.bookForm.value.comment]
+    });
+    console.log(this.book);
+    if (this.book.id === '0') {
+      this.bookService.createBook(this.book)
+        .then(response => {
+          const body = response.json();
+          this.router.navigate(['/book-list']);
+        })
+        .catch(this.handleErrorPromise);
+    } else {
+      this.bookService.updateBook(this.book.id, this.book)
+        .then(response => {
+          const body = response.json();
+          this.router.navigate(['/book-list']);
+        })
+        .catch(this.handleErrorPromise);
+    }
   }
   handleErrorPromise(error: Response | any) {
     console.error(error.message || error);
@@ -69,7 +90,7 @@ export class BookEditComponent implements OnInit {
         name: event.target.value,
         className: this.classNames[Math.floor((Math.random() * 5))]
       }
-      this.tags.push(tag);
+      this.book.tags.push(tag);
       event.target.value = '';
     }
   }

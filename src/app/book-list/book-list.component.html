@@ -25,7 +25,9 @@
                   <td>{{book.category}}</td>
                   <td>
                     <span *ngFor="let tag of book.tags">
-                      {{tag}}
+                      <h6>
+                        <span class="badge badge-pill" [ngClass]="tag.className">{{tag.name}}</span>
+                      </h6>
                     </span>
                   </td>
                   <td>
