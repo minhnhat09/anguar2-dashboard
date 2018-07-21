@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { BookService } from './book.service';
+import { BookService } from './service/book.service';
 import { Book } from './interfaces/book.interface';
 @Component({
   selector: 'app-book-list',
@@ -10,8 +9,7 @@ import { Book } from './interfaces/book.interface';
 export class BookListComponent implements OnInit {
 
   books: Book[];
-  constructor(private bookService: BookService,
-    private spinner: NgxSpinnerService) { }
+  constructor(private bookService: BookService) { }
 
   ngOnInit() {
     this.getBooks();

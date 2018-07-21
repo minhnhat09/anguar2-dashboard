@@ -7,13 +7,12 @@ import { BookEditComponent } from './book-edit.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMdModule } from 'ngx-md';
-
+import { BookResolver } from './service/book-resolver.service';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-
     NgxMdModule.forRoot(),
     RouterModule.forChild([
       {
@@ -21,22 +20,21 @@ import { NgxMdModule } from 'ngx-md';
         component: BookListComponent
       },
       {
-        path: 'book-edit',
-        component: BookEditComponent
-
+        path: ':id/book-edit',
+        component: BookEditComponent,
+        resolve: { book: BookResolver }
       },
       {
         path: 'book-detail/:id',
         component: BookDetailComponent
-
       },
     ])
   ],
   declarations: [
     BookListComponent,
     BookDetailComponent,
-    BookEditComponent,
+    BookEditComponent
   ],
-  providers: []
+  providers: [BookResolver]
 })
 export class BookModule { }

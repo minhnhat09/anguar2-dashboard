@@ -37,7 +37,7 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-                <textarea class="form-control" rows="20" id="textbox" [(ngModel)]="bookComment"></textarea>
+              <textarea class="form-control" rows="20" id="textbox" [(ngModel)]="bookComment"></textarea>
             </div>
           </div>
           <div class="row">
@@ -47,6 +47,7 @@
           </div>
         </div>
       </div>
+      <button type="button" class="btn btn-primary" [routerLink]="['/book-list',book.id, 'book-edit']">Create book</button>
     </div>
   </div>
 </div>

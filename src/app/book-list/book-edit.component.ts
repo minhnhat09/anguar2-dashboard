@@ -1,9 +1,9 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { Book, Tag } from './interfaces/book.interface';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 // SERVICES
-import { BookService } from './book.service';
+import { BookService } from './service/book.service';
 @Component({
   selector: 'app-book-edit',
   templateUrl: './book-edit.component.html',
@@ -21,10 +21,16 @@ export class BookEditComponent implements OnInit {
     'badge-danger'
   ];
   constructor(private bookService: BookService,
-    private router: Router) {
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.book = bookService.initiateBook();
   }
   public ngOnInit() {
+    console.log(this.route);
+    this.route.data.subscribe(data => {
+      console.log(data);
+    });
     this.bookForm = new FormGroup({
       bookName: new FormControl('', Validators.required),
       author: new FormControl('', Validators.required),
@@ -41,7 +47,6 @@ export class BookEditComponent implements OnInit {
     this.tags.splice(i, 1);
   }
   public createOrUpdateBook() {
-    console.log(this.bookForm);
     const book = {
       ...this.bookForm.value,
       comments: [this.bookForm.value.comment],
