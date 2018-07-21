@@ -46,7 +46,7 @@ export class BookEditComponent implements OnInit {
       tags: this.tags
     };
     console.log(book);
-    this.bookService.createBook(book);
+    this.bookService.createBook(book)
   }
 
   onTagKeydown(event) {

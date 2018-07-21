@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 import { BookService } from './book.service';
 import { Book } from './interfaces/book.interface';
 @Component({
@@ -10,7 +10,8 @@ import { Book } from './interfaces/book.interface';
 export class BookListComponent implements OnInit {
 
   books: Book[];
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.getBooks();
@@ -19,7 +20,6 @@ export class BookListComponent implements OnInit {
     this.bookService.getBooks()
       .subscribe(res => {
         this.books = res;
-        console.log(res);
       });
   }
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'; import { Observable, of } from 'rxjs';
-import { RequestOptions, Headers, Http } from '@angular/http';
+import { RequestOptions, Headers, Http, RequestMethod } from '@angular/http';
 import { catchError, map, tap } from 'rxjs/operators';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Book } from './interfaces/book.interface';
 
 const httpOptions = {
@@ -20,39 +20,53 @@ export class BookService {
     'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YjM3NGU5ZjNiMTZlODRmYTQ1YmQ5MjUiLCJpYXQiOjE1MzIxMTI4MTQxNTh9.XxGSHtJWnbsz-aFFjiJDkF5e1J7nr_w_AFUKLZbLiLI'
   });
   public books: Book[] = [];
-  constructor(
+  constructor(private spinner: NgxSpinnerService,
     private http: Http) { }
 
   /** GET heroes from the server */
   getBooks(): any {
     const options = new RequestOptions({ headers: this.headers });
     // return this.http.get(this.booksUrl, options)
+    this.spinner.show();
     return this.http.get(this.booksUrl, options)
       .pipe(
         map(response => {
-          this.books = response.json();
+          const booksResponse = response.json();
+          booksResponse.map((bookRes) => {
+            const book: Book = {
+              ...bookRes,
+              id: bookRes._id
+            }
+            this.books.push(book);
+          })
+          console.log(this.books);
+          this.spinner.hide();
           return this.books;
         }));
   }
 
-  createBook(newBook): any {
-    const options = new RequestOptions({ headers: this.headers });
+  createBook(newBook) {
+    const options = new RequestOptions({
+      method: RequestMethod.Post,
+      headers: this.headers
+    });
     // return this.http.get(this.booksUrl, options)
     return this.http.post(this.booksUrl, newBook, options)
-      .pipe(
-        map(response => {
-          return response.json();
-        }));
+      .toPromise()
+      .then(response => {
+        const body = response.json();
+        return body || {};
+      })
+      .catch(this.handleErrorPromise);
   }
 
-  private extractData(response: Response) {
-    const body = response.json();
-    return body.data || {};
+  handleErrorPromise(error: Response | any) {
+    console.error(error.message || error);
+    return Promise.reject(error.message || error);
   }
-
   initiateBook(): Book {
     const book: Book = {
-      id: 0,
+      id: '0',
       bookName: '',
       author: '',
       page: 45,
@@ -81,7 +95,7 @@ export class BookService {
    */
   getBookById(bookId: string) {
     return this.books.find((b: Book) => {
-      return b._id === bookId;
+      return b.id === bookId;
     });
   }
 

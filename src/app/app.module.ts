@@ -10,7 +10,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -26,6 +26,7 @@ import { NgxMdModule } from 'ngx-md';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    NgxSpinnerModule,
     NgbModule.forRoot(),
     NgxMdModule.forRoot(),
     HttpClientInMemoryWebApiModule.forRoot(
