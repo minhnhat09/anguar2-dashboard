@@ -64,6 +64,27 @@ export class BookService {
             .catch(this.handleErrorPromise);
     }
 
+    uploadBookImage(fileUpload) {
+        const options = new RequestOptions({
+            headers: this.headers
+        });
+        return this.http.get(`${this.booksUrl}/uploadImage`, options)
+            .toPromise()
+            .then(response => {
+                console.log('res uploqd', response);
+                if (response.status === 200) {
+                    const url = response.json().url;
+                    const uploadHeader = new Headers({
+                        'Content-Type': fileUpload.type
+                    })
+                    return this.http.put(`${url}`, fileUpload, {
+                        headers: uploadHeader
+                    }).toPromise();
+                }
+            })
+            .catch(this.handleErrorPromise);
+    }
+
     createBook(newBook): Promise<any> {
         const options = new RequestOptions({
             method: RequestMethod.Post,

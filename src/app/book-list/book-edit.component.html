@@ -97,6 +97,15 @@
             </div>
             <div class="row">
               <div class="col-md-12">
+                <input type="file" accept="image/*" (change)="handleFileInput($event.target.files[0])" />
+                <button type="button" class="btn btn-primary" (click)="uploadFile()" [disabled]="!fileUpload">Upload file</button>
+                <span>
+                  <p class="text-success">URl: {{bookUrl}}</p>
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
                 <div class="card-header">
                   <h4 class="card-title">Comment</h4>
                 </div>

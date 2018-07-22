@@ -4,6 +4,8 @@ import { Book, Tag } from './interfaces/book.interface';
 import { Router, ActivatedRoute } from '@angular/router';
 // SERVICES
 import { BookService } from './service/book.service';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-book-edit',
   templateUrl: './book-edit.component.html',
@@ -11,6 +13,7 @@ import { BookService } from './service/book.service';
 })
 export class BookEditComponent implements OnInit {
   public bookForm: FormGroup;
+  public fileUpload;
   public book: Book;
   public tags: Tag[] = [];
   public classNames: string[] = [
@@ -20,9 +23,12 @@ export class BookEditComponent implements OnInit {
     'badge-warning',
     'badge-danger'
   ];
+  public bookUrl = '';
   constructor(private bookService: BookService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
   ) {
     this.book = bookService.initiateBook();
   }
@@ -59,6 +65,7 @@ export class BookEditComponent implements OnInit {
     this.tags.splice(i, 1);
   }
   public createOrUpdateBook() {
+
     this.book = Object.assign(this.book, {
       ...this.bookForm.value,
       comments: [this.bookForm.value.comment]
@@ -79,6 +86,27 @@ export class BookEditComponent implements OnInit {
         })
         .catch(this.handleErrorPromise);
     }
+  }
+  uploadFile() {
+    this.spinner.show();
+    this.bookService.uploadBookImage(this.fileUpload)
+      .then(resFromS3 => {
+        this.toastr.success(
+          `<span class="now-ui-icons ui-1_bell-53"></span>Upload file to S3 ok`, '', {
+            timeOut: 8000,
+            closeButton: true,
+            enableHtml: true,
+            toastClass: 'alert alert-info alert-with-icon',
+            positionClass: 'toast-top-right'
+          });
+        console.log(resFromS3);
+        this.bookUrl = resFromS3.url;
+        this.spinner.hide();
+      })
+      .catch(this.handleErrorPromise);
+  }
+  handleFileInput(event) {
+    this.fileUpload = event;
   }
   handleErrorPromise(error: Response | any) {
     console.error(error.message || error);
